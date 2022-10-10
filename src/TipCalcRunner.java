@@ -34,30 +34,25 @@ public class TipCalcRunner {
             System.out.println("Enter a cost in dollars and cents, e.g. 12.50 (-1 to end):");
             checkEnd = scan.nextDouble();
             if (checkEnd > 0) {
-                totalCost = (totalCost + checkEnd);
+                tipCalc.addMeal(checkEnd);
             }
         }
         //enter the things bought and adds up the values to a totalCost before tips.
 
         System.out.println("----------------------------------------------------");
 
-        String roundedTotalCost = formatter.format(totalCost);
-        double totalTip = ((double) tipPercent / 100) * totalCost;
-        String roundedTotalTip = formatter.format(totalTip);
-        double totalBillWithTip = (totalTip + totalCost);
-        String roundedTotalBillWithTip = formatter.format(totalBillWithTip);
-        double perPersonBeforeTip = (totalCost / people);
-        String roundedPerPersonBeforeTip = formatter.format(perPersonBeforeTip);
-        double tipPerPerson = (totalTip / people);
-        String roundedTipPerPerson = formatter.format(tipPerPerson);
-        double totalCostPerPerson = (totalBillWithTip / people);
-        String roundedTotalCostPerPerson = formatter.format(totalCostPerPerson);
+        String roundedTotalCost = formatter.format(tipCalc.getTotalBillBeforeTip());
+        String roundedTotalTip = formatter.format(tipCalc.tipAmount());
+        String roundedTotalBillAfterTip = formatter.format(tipCalc.totalBill());
+        String roundedPerPersonBeforeTip = formatter.format(tipCalc.perPersonCostBeforeTip());
+        String roundedTipPerPerson = formatter.format(tipCalc.perPersonTipAmount());
+        String roundedTotalCostPerPerson = formatter.format(tipCalc.perPersonTotalCost());
         //calculates values per person such as tips and total cost
 
         System.out.println("Total Bill Before Tip: " + roundedTotalCost);
         System.out.println("Tip Percentage: " + tipCalc.getTipPercentage());
         System.out.println("Total Tip: " + roundedTotalTip);
-        System.out.println("Total Bill with Tip: " + roundedTotalBillWithTip);
+        System.out.println("Total Bill with Tip: " + roundedTotalBillAfterTip);
         System.out.println("Per Person Cost Before Tip: " + roundedPerPersonBeforeTip);
         System.out.println("Tip Per Person: " + roundedTipPerPerson);
         System.out.println("Total Cost Per Person: " + roundedTotalCostPerPerson);
